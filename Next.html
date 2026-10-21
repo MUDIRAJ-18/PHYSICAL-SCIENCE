@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b18">
+<title>ENJOY INFINITY | Next Page</title>
+
+<style>
+:root {
+  --bg:#080b18;
+  --panel:#11182c;
+  --text:#f5f7ff;
+  --muted:#a6b4d0;
+  --cyan:#00efff;
+  --purple:#c084fc;
+  --border:#2a3c5e;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  line-height:1.7;
+}
+header {
+  text-align:center;
+  padding:35px 15px;
+  background:radial-gradient(ellipse at top,#263f7b,transparent 75%),
+             linear-gradient(135deg,#100d27,#101a35);
+  border-bottom:2px solid var(--cyan);
+}
+h1 {
+  font-size:clamp(36px,9vw,65px);
+  color:white;
+  text-shadow:0 0 15px var(--cyan),0 0 30px #744cff;
+  margin:10px 0;
+}
+.kicker { color:var(--cyan);letter-spacing:4px; }
+.director { color:#e9a1ff;font-weight:bold; }
+main { max-width:900px;margin:auto;padding:18px; }
+.card {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:20px;
+  margin:18px 0;
+}
+h2 { color:var(--cyan); }
+h3 { color:var(--purple); }
+button {
+  padding:11px 17px;
+  margin:5px;
+  border:0;
+  border-radius:9px;
+  background:var(--cyan);
+  color:#07101c;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:hover { background:var(--purple); }
+a { color:var(--cyan); }
+.diagram {
+  background:#080e1c;
+  border:1px solid #263a5c;
+  border-radius:12px;
+  padding:15px;
+  text-align:center;
+  overflow-x:auto;
+}
+.orbit {
+  display:flex;
+  justify-content:center;
+  gap:9px;
+  margin:14px 0;
+}
+.box {
+  width:60px;
+  height:48px;
+  border:2px solid var(--cyan);
+  border-radius:7px;
+  display:grid;
+  place-items:center;
+  font-size:23px;
+}
+.sphere {
+  width:125px;
+  height:125px;
+  margin:18px auto;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 25%,white,#7cf5ff 20%,#2877ff 60%,#17104b);
+  box-shadow:0 0 25px #168dff;
+}
+footer {
+  text-align:center;
+  padding:25px 12px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="kicker">WELCOME BACK TO</div>
+  <h1>ENJOY INFINITY</h1>
+  <p class="director">DIRECTOR: KALAVENA ABHILASH</p>
+  <p>10 CLASS • PHYSICAL SCIENCE</p>
+  <p>PAGE 02 — ADVANCED LEARNING</p>
+  <button onclick="location.href='index.html'">← HOME PAGE</button>
+</header>
+
+<main>
+  <section class="card">
+    <h2>🚀 Welcome to Page 2</h2>
+    <p>Continue your Physical Science learning with more examples, diagrams and practice questions.</p>
+  </section>
+
+  <section class="card">
+    <h2>📘 Lesson 04: Electron Shells</h2>
+    <p>Electrons occupy energy levels around an atomic nucleus.</p>
+    <p>For the first 20 elements, the simplified shell capacities are commonly introduced as 2, 8, 8, 2.</p>
+    <div class="diagram">
+      <h3>Example: Carbon</h3>
+      <p>Atomic number: 6</p>
+      <p>Electron configuration: 1s² 2s² 2p²</p>
+      <p>Shell distribution: 2, 4</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>⚛️ Lesson 05: The s Orbital</h2>
+    <p>An s orbital has a spherical shape.</p>
+    <div class="diagram">
+      <div class="sphere"></div>
+      <p>Illustration of a spherical s orbital</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>🧠 Quick Quiz</h2>
+    <p>Question 1: How many electrons does a neutral carbon atom have?</p>
+    <button onclick="answer(6)">6 electrons</button>
+    <button onclick="answer(8)">8 electrons</button>
+    <button onclick="answer(4)">4 electrons</button>
+    <p id="result" aria-live="polite"></p>
+
+    <p>Question 2: What is the shape of an s orbital?</p>
+    <button onclick="shape(true)">Spherical</button>
+    <button onclick="shape(false)">Dumbbell</button>
+    <p id="result2" aria-live="polite"></p>
+  </section>
+
+  <section class="card">
+    <h2>📚 Continue Learning</h2>
+    <p>More chapters can be added as separate pages.</p>
+    <button onclick="location.href='index.html'">← Previous Page</button>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+  </section>
+</main>
+
+<footer>
+  <p>ENJOY INFINITY</p>
+  <p>DIRECTOR: KALAVENA ABHILASH</p>
+  <p>Learn Today • Succeed Tomorrow 🚀</p>
+</footer>
+
+<script>
+function answer(value) {
+  const result = document.getElementById('result');
+  if (value === 6) {
+    result.textContent = 'Correct! Carbon has atomic number 6.';
+    result.style.color = '#50f5a4';
+  } else {
+    result.textContent = 'Try again! Check the atomic number of carbon.';
+    result.style.color = '#ff8888';
+  }
+}
+function shape(correct) {
+  const result = document.getElementById('result2');
+  result.textContent = correct
+    ? 'Correct! An s orbital is spherical.'
+    : 'Try again! An s orbital is spherical.';
+  result.style.color = correct ? '#50f5a4' : '#ff8888';
+}
+</script>
+</body>
+</html>
