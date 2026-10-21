@@ -3,237 +3,289 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GameZone Battle Island</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENJOY | 10th Physical Science</title>
+
 <style>
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  background: #080d18;
+  padding: 0;
+}
+
+body {
+  background: #070b18;
   color: white;
   font-family: Arial, sans-serif;
-  text-align: center;
+  line-height: 1.7;
 }
+
 header {
-  padding: 24px 10px;
-  background: #101b2b;
-  border-bottom: 2px solid #00eaff;
+  text-align: center;
+  padding: 40px 15px;
+  background: linear-gradient(135deg, #111b43, #32105a);
+  border-bottom: 3px solid #00f7ff;
 }
-h1 { color: #ffd447; }
-button, select {
-  padding: 12px;
-  margin: 6px;
-  border: 1px solid #00eaff;
-  border-radius: 8px;
-  background: #10283d;
-  color: white;
+
+.welcome {
+  color: #00f7ff;
+  letter-spacing: 4px;
+  font-size: 16px;
 }
-.panel {
-  margin: 15px auto;
-  padding: 18px;
-  max-width: 750px;
-  background: #101b2b;
-  border: 1px solid #24617c;
-  border-radius: 12px;
+
+h1 {
+  font-size: clamp(38px, 10vw, 65px);
+  color: #fff;
+  text-shadow: 0 0 15px #00eaff;
+  margin: 10px 0;
 }
-.map {
-  position: relative;
-  height: 280px;
-  overflow: hidden;
-  border-radius: 12px;
-  background:
-    radial-gradient(ellipse at 30% 30%, #7bba67 0 15%, transparent 16%),
-    radial-gradient(ellipse at 65% 60%, #609c59 0 22%, transparent 23%),
-    linear-gradient(135deg, #126080, #1b795f, #126080);
+
+.director {
+  color: #ff4df0;
+  font-weight: bold;
+  font-size: 19px;
 }
-.zone {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 140px;
-  height: 140px;
-  transform: translate(-50%,-50%);
-  border: 3px solid #35e7ff;
+
+.tag {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 8px 18px;
+  border: 1px solid #00f7ff;
+  border-radius: 25px;
+  color: #00f7ff;
+}
+
+main {
+  max-width: 850px;
+  padding: 20px;
+  margin: auto;
+}
+
+.card {
+  background: #11182b;
+  border: 1px solid #273a5c;
+  border-radius: 15px;
+  padding: 22px;
+  margin: 22px 0;
+  box-shadow: 0 0 15px #071d35;
+}
+
+h2 {
+  color: #00f7ff;
+  margin-bottom: 12px;
+}
+
+h3 {
+  color: #ff4df0;
+  margin: 15px 0 8px;
+}
+
+p {
+  margin: 8px 0;
+}
+
+.diagram {
+  background: #080d1b;
+  padding: 18px 8px;
+  margin: 15px 0;
+  border-radius: 10px;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.orbitals {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.orbital {
+  width: 65px;
+  height: 48px;
+  border: 2px solid #00f7ff;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  color: #fff;
+}
+
+.correct {
+  color: #63ff9b;
+  font-weight: bold;
+}
+
+.wrong {
+  color: #ff8080;
+}
+
+.note {
+  border-left: 4px solid #ff4df0;
+  padding: 10px;
+  background: #1a122b;
+  margin-top: 12px;
+}
+
+.sphere {
+  width: 150px;
+  height: 150px;
+  margin: 20px auto;
   border-radius: 50%;
-  background: #35e7ff18;
+  background: radial-gradient(circle at 35% 30%,
+    #ffffff, #69f4ff 20%, #2469ff 60%, #13215e);
+  box-shadow: 0 0 30px #168dff;
 }
-#feed { color: #35e7ff; }
+
+footer {
+  text-align: center;
+  padding: 25px 10px;
+  color: #a9b4d4;
+  border-top: 1px solid #243454;
+}
+
+button {
+  background: #00eaff;
+  color: #07101e;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 22px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+button:hover {
+  background: #ff4df0;
+}
+
+@media (max-width: 400px) {
+  .orbital {
+    width: 52px;
+    height: 44px;
+  }
+  .orbitals {
+    gap: 7px;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-  <h1>GAMEZONE: BATTLE ISLAND</h1>
-  <p>DROP • LOOT • SURVIVE</p>
+  <div class="welcome">WELCOME TO</div>
+  <h1>ENJOY</h1>
+  <p class="director">DIRECTOR: KALAVENA ABHILASH</p>
+  <div class="tag">10 CLASS • PHYSICAL SCIENCE</div>
 </header>
 
-<div class="panel">
-  <h2>Choose Game Mode</h2>
-  <button onclick="mode='Solo';players=120;update()">
-    Solo
-  </button>
-  <button onclick="mode='Duo';players=60;update()">
-    Duo
-  </button>
-  <button onclick="mode='Squad';players=30;update()">
-    Squad
-  </button>
-  <p id="mode">Mode: Solo</p>
-  <button onclick="start()">START MATCH</button>
-  <p id="status">Ready to deploy</p>
-</div>
+<main>
 
-<div class="panel">
-  <h2>Battle Map</h2>
-  <div class="map" onclick="pin(event)">
-    <div class="zone"></div>
-    <span id="marker"
-      style="position:absolute;left:50%;top:50%;font-size:25px">
-      📍
-    </span>
-  </div>
-  <p>Tap the map to mark a landing point.</p>
-  <p>Players remaining: <b id="players">120</b></p>
-  <p>Safe zone: <b id="safe">100%</b></p>
-</div>
+  <section class="card">
+    <h2>📘 Welcome to Physical Science</h2>
+    <p>
+      Learn science concepts with simple explanations,
+      electron diagrams and easy examples.
+    </p>
+    <p><strong>Topic:</strong> Electronic Configuration and Orbitals</p>
+  </section>
 
-<div class="panel">
-  <h2>Weapon Loadout</h2>
-  <select id="weapon">
-    <option>M416 - Assault Rifle</option>
-    <option>AKM - Assault Rifle</option>
-    <option>UMP45 - SMG</option>
-    <option>M249 - Machine Gun</option>
-    <option>AWM - Sniper Rifle</option>
-    <option>SKS - DMR</option>
-    <option>Pistol</option>
-    <option>Shotgun</option>
-    <option>Pan - Melee</option>
-    <option>Frag Grenade</option>
-    <option>Smoke Grenade</option>
-    <option>Crossbow</option>
-  </select>
-  <p id="equipped">Choose your weapon.</p>
-  <button onclick="equip()">EQUIP</button>
-  <button onclick="fire()">FIRE</button>
-  <button onclick="reload()">RELOAD</button>
-  <p id="ammo">Ammo: 30 / 120</p>
-</div>
+  <section class="card">
+    <h2>Q4. Hund's Rule</h2>
 
-<div class="panel">
-  <h2>Vehicles</h2>
-  <button onclick="vehicle('Jeep')">🚙 Jeep</button>
-  <button onclick="vehicle('Helicopter')">🚁 Helicopter</button>
-  <button onclick="vehicle('Boat')">🚤 Boat</button>
-  <button onclick="vehicle('On foot')">🏃 On foot</button>
-  <p id="vehicle">Transport: On foot</p>
-</div>
+    <p>
+      <strong>Hund's rule:</strong> Electrons occupy orbitals
+      of equal energy one at a time before pairing.
+      The unpaired electrons have parallel spins in the
+      ground-state arrangement.
+    </p>
 
-<div class="panel">
-  <h2>Custom Settings</h2>
-  <p>Graphics</p>
-  <select id="graphics">
-    <option>Low</option><option selected>High</option>
-    <option>Ultra</option>
-  </select>
-  <p>Touch sensitivity</p>
-  <input id="sensitivity" type="range" min="10" max="100" value="60">
-  <p><label><input id="auto" type="checkbox" checked> Auto-pickup</label></p>
-  <p><label><input id="doors" type="checkbox" checked> Auto-open doors</label></p>
-  <p><label><input id="sound" type="checkbox" checked> Sound effects</label></p>
-  <button onclick="saveSettings()">SAVE SETTINGS</button>
-  <p id="settings"></p>
-</div>
+    <h3>Example: Three electrons in 2p</h3>
+    <div class="diagram">
+      <p>2p orbitals</p>
+      <div class="orbitals">
+        <div class="orbital">↑</div>
+        <div class="orbital">↑</div>
+        <div class="orbital">↑</div>
+      </div>
+      <p class="correct">Correct arrangement: 2p³</p>
+    </div>
 
-<div class="panel">
-  <h2>Squad Controls</h2>
-  <button onclick="action('Move')">MOVE</button>
-  <button onclick="action('Cover')">TAKE COVER</button>
-  <button onclick="action('Medkit')">MEDKIT</button>
-  <button onclick="action('Team pin shared')">SHARE PIN</button>
-  <button onclick="action('Voice chat demo enabled')">VOICE CHAT</button>
-  <p id="feed">Welcome to Battle Island!</p>
-</div>
+    <h3>Carbon: 2p²</h3>
+    <p>
+      Carbon has 6 electrons. Its electron configuration is
+      <strong>1s² 2s² 2p²</strong>.
+    </p>
 
-<script>
-let mode = "Solo";
-let players = 120;
-let safe = 100;
-let ammo = 30;
-let reserve = 120;
-let live = false;
-let equipped = "M416";
+    <div class="diagram">
+      <p>2p orbitals</p>
+      <div class="orbitals">
+        <div class="orbital">↑</div>
+        <div class="orbital">↑</div>
+        <div class="orbital"></div>
+      </div>
+      <p class="correct">Correct: one electron in each of two orbitals</p>
+    </div>
 
-function update() {
-  document.getElementById("mode").textContent =
-    "Mode: " + mode;
-  document.getElementById("players").textContent = players;
-}
+    <div class="diagram">
+      <p>Incorrect arrangement</p>
+      <div class="orbitals">
+        <div class="orbital">↑↓</div>
+        <div class="orbital"></div>
+        <div class="orbital"></div>
+      </div>
+      <p class="wrong">Incorrect for ground-state carbon</p>
+    </div>
 
-function log(message) {
-  document.getElementById("feed").textContent = message;
-}
+    <div class="note">
+      <strong>Remember:</strong> Fill each equal-energy p orbital
+      singly before pairing electrons.
+    </div>
+  </section>
 
-function start() {
-  live = true;
-  safe = 100;
-  document.getElementById("status").textContent =
-    "Match started — simulated gameplay";
-  log(mode + " match started!");
-  update();
-}
+  <section class="card">
+    <h2>Q5. Draw the shape of a 1s orbital</h2>
 
-function pin(event) {
-  let rect = event.currentTarget.getBoundingClientRect();
-  let marker = document.getElementById("marker");
-  marker.style.left =
-    ((event.clientX - rect.left) / rect.width * 100) + "%";
-  marker.style.top =
-    ((event.clientY - rect.top) / rect.height * 100) + "%";
-  log("Landing point marked!");
-}
+    <p>
+      The letter <strong>s</strong> represents an s orbital.
+      The number <strong>1</strong> indicates the first
+      principal energy level.
+    </p>
 
-function equip() {
-  equipped = document.getElementById("weapon").value;
-  document.getElementById("equipped").textContent =
-    "Equipped: " + equipped;
-  log("Weapon selected: " + equipped);
-}
+    <div class="diagram">
+      <div class="sphere"></div>
+      <p class="correct">1s orbital — spherical shape</p>
+    </div>
 
-function fire() {
-  if (!live) return log("Start a match first.");
-  if (ammo <= 0) return log("Reload your weapon.");
-  ammo--;
-  players = Math.max(1, players - 1);
-  safe = Math.max(10, safe - 2);
-  document.getElementById("players").textContent = players;
-  document.getElementById("safe").textContent = safe + "%";
-  document.getElementById("ammo").textContent =
-    "Ammo: " + ammo + " / " + reserve;
-  log("Simulated shot fired. Players remaining: " + players);
-}
+    <p>
+      An s orbital has a spherical shape around the nucleus.
+      The blue sphere above is a simple illustration, not
+      a boundary of the actual orbital.
+    </p>
+  </section>
 
-function reload() {
-  let amount = Math.min(30 - ammo, reserve);
-  ammo += amount;
-  reserve -= amount;
-  document.getElementById("ammo").textContent =
-    "Ammo: " + ammo + " / " + reserve;
-  log("Reload completed.");
-}
+  <section class="card">
+    <h2>📝 Quick Revision</h2>
+    <p><strong>1.</strong> What is Hund's rule?</p>
+    <p><strong>Answer:</strong> Equal-energy orbitals fill singly before pairing.</p>
 
-function vehicle(name) {
-  document.getElementById("vehicle").textContent =
-    "Transport: " + name;
-  log("Selected transport: " + name);
-}
+    <p><strong>2.</strong> What is carbon's electron configuration?</p>
+    <p><strong>Answer:</strong> 1s² 2s² 2p².</p>
 
-function saveSettings() {
-  document.getElementById("settings").textContent =
-    "Settings applied for this session!";
-}
+    <p><strong>3.</strong> What is the shape of an s orbital?</p>
+    <p><strong>Answer:</strong> Spherical.</p>
 
-function action(name) {
-  log(name + " — demo control");
-}
-</script>
+    <button onclick="window.print()">Print / Save as PDF</button>
+  </section>
+
+</main>
+
+<footer>
+  <p>ENJOY • 10th Class Physical Science</p>
+  <p>Directed by KALAVENA ABHILASH</p>
+  <p>Learn Today • Succeed Tomorrow 🚀</p>
+</footer>
+
 </body>
 </html>
