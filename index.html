@@ -1,291 +1,532 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ENJOY | 10th Physical Science</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b18">
+<title>ENJOY SCIENCE INFINITY</title>
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+:root {
+ --bg:#080b18;--panel:#11182c;--panel2:#1b2740;
+ --text:#f5f7ff;--muted:#a6b4d0;--cyan:#00efff;
+ --purple:#c084fc;--green:#50f5a4;--border:#2a3c5e;
 }
-
-body {
-  background: #070b18;
-  color: white;
-  font-family: Arial, sans-serif;
-  line-height: 1.7;
+body.light {
+ --bg:#edf3ff;--panel:#fff;--panel2:#e4ecfc;
+ --text:#14213b;--muted:#586985;--border:#c7d6ed;
 }
-
-header {
-  text-align: center;
-  padding: 40px 15px;
-  background: linear-gradient(135deg, #111b43, #32105a);
-  border-bottom: 3px solid #00f7ff;
-}
-
-.welcome {
-  color: #00f7ff;
-  letter-spacing: 4px;
-  font-size: 16px;
-}
-
-h1 {
-  font-size: clamp(38px, 10vw, 65px);
-  color: #fff;
-  text-shadow: 0 0 15px #00eaff;
-  margin: 10px 0;
-}
-
-.director {
-  color: #ff4df0;
-  font-weight: bold;
-  font-size: 19px;
-}
-
-.tag {
-  display: inline-block;
-  margin-top: 18px;
-  padding: 8px 18px;
-  border: 1px solid #00f7ff;
-  border-radius: 25px;
-  color: #00f7ff;
-}
-
-main {
-  max-width: 850px;
-  padding: 20px;
-  margin: auto;
-}
-
-.card {
-  background: #11182b;
-  border: 1px solid #273a5c;
-  border-radius: 15px;
-  padding: 22px;
-  margin: 22px 0;
-  box-shadow: 0 0 15px #071d35;
-}
-
-h2 {
-  color: #00f7ff;
-  margin-bottom: 12px;
-}
-
-h3 {
-  color: #ff4df0;
-  margin: 15px 0 8px;
-}
-
-p {
-  margin: 8px 0;
-}
-
-.diagram {
-  background: #080d1b;
-  padding: 18px 8px;
-  margin: 15px 0;
-  border-radius: 10px;
-  text-align: center;
-  overflow-x: auto;
-}
-
-.orbitals {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin: 15px 0;
-}
-
-.orbital {
-  width: 65px;
-  height: 48px;
-  border: 2px solid #00f7ff;
-  border-radius: 7px;
-  display: grid;
-  place-items: center;
-  font-size: 28px;
-  color: #fff;
-}
-
-.correct {
-  color: #63ff9b;
-  font-weight: bold;
-}
-
-.wrong {
-  color: #ff8080;
-}
-
-.note {
-  border-left: 4px solid #ff4df0;
-  padding: 10px;
-  background: #1a122b;
-  margin-top: 12px;
-}
-
-.sphere {
-  width: 150px;
-  height: 150px;
-  margin: 20px auto;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%,
-    #ffffff, #69f4ff 20%, #2469ff 60%, #13215e);
-  box-shadow: 0 0 30px #168dff;
-}
-
-footer {
-  text-align: center;
-  padding: 25px 10px;
-  color: #a9b4d4;
-  border-top: 1px solid #243454;
-}
-
-button {
-  background: #00eaff;
-  color: #07101e;
-  border: none;
-  border-radius: 25px;
-  padding: 12px 22px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 12px;
-}
-
-button:hover {
-  background: #ff4df0;
-}
-
-@media (max-width: 400px) {
-  .orbital {
-    width: 52px;
-    height: 44px;
-  }
-  .orbitals {
-    gap: 7px;
-  }
-}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+ font:15px/1.6 system-ui,Arial,sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{
+ outline:2px solid var(--cyan);outline-offset:3px}
+header{text-align:center;padding:32px 14px;
+ background:radial-gradient(ellipse at 50% 0%,#263f7b,transparent 70%),
+ linear-gradient(135deg,#100d27,#101a35);
+ border-bottom:2px solid var(--cyan)}
+.kicker{letter-spacing:5px;color:var(--cyan);font-size:12px}
+h1{font-size:clamp(38px,9vw,72px);line-height:1.15;
+ margin:10px 0;color:white;letter-spacing:2px;
+ text-shadow:0 0 12px #00eaff,0 0 32px #7b43ff}
+.director{color:#e9a1ff;font-weight:800}
+.pill{display:inline-block;border:1px solid var(--cyan);
+ color:var(--cyan);padding:5px 12px;border-radius:25px;font-size:12px}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:7px;
+ overflow-x:auto;padding:10px;background:var(--bg);
+ border-bottom:1px solid var(--border)}
+nav a{flex-shrink:0;text-decoration:none;color:var(--text);
+ background:var(--panel);border:1px solid var(--border);
+ border-radius:9px;padding:8px 11px;font-size:13px}
+main{max-width:1100px;margin:auto;padding:16px}
+section{margin:25px 0;scroll-margin-top:75px}
+h2{font-size:23px;margin:0 0 12px}
+h3{margin:5px 0}
+p{margin:8px 0}
+.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:13px}
+.card{min-width:0;background:var(--panel);border:1px solid var(--border);
+ border-radius:15px;padding:17px}
+.card:hover{border-color:#527ab2}
+.big{font-size:29px;font-weight:850;color:var(--cyan)}
+.icon{font-size:27px}
+.btn{border:0;border-radius:9px;padding:10px 14px;
+ background:var(--cyan);color:#06111f;font-weight:800;margin:5px 4px 5px 0}
+.btn.alt{background:var(--panel2);color:var(--text);border:1px solid var(--border)}
+.btn.purple{background:var(--purple);color:#19092a}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+input,textarea,select{width:100%;max-width:100%;padding:11px;
+ border-radius:9px;border:1px solid var(--border);
+ background:var(--panel2);color:var(--text)}
+textarea{min-height:100px;resize:vertical}
+label{display:block;margin:10px 0 5px}
+.bar{height:10px;background:var(--panel2);border-radius:20px;overflow:hidden}
+.bar div{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--purple))}
+.orbit{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:13px 0}
+.orb{width:55px;height:47px;display:grid;place-items:center;
+ border:2px solid var(--cyan);border-radius:7px;font-size:23px}
+.diagram{padding:15px;background:#080e1c;border:1px solid #263a5c;
+ border-radius:12px;text-align:center;color:white;overflow-x:auto}
+.sphere{height:125px;width:125px;margin:15px auto;border-radius:50%;
+ background:radial-gradient(circle at 32% 27%,white,#8cf6ff 17%,#2877ff 55%,#18104b);
+ box-shadow:0 0 30px #258cff}
+.item{padding:13px 0;border-bottom:1px solid var(--border)}
+.item:last-child{border:0}
+.option{display:block;margin:8px 0;padding:10px;
+ border:1px solid var(--border);border-radius:9px}
+.option input{width:auto}
+.feedback{font-weight:750;margin-top:12px}
+.badge{display:inline-block;background:var(--panel2);border:1px solid var(--border);
+ border-radius:20px;padding:4px 9px;margin:3px;font-size:12px}
+.hidden{display:none!important}
+footer{text-align:center;padding:25px 12px;border-top:1px solid var(--border);color:var(--muted)}
+@media(max-width:480px){main{padding:11px}.card{padding:13px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 </style>
 </head>
-
 <body>
 
 <header>
-  <div class="welcome">WELCOME TO</div>
-  <h1>ENJOY</h1>
-  <p class="director">DIRECTOR: CRAZY__BOY__LUCKY007</p>
-  <div class="tag">10 CLASS • PHYSICAL SCIENCE</div>
+ <div class="kicker">WELCOME TO</div>
+ <h1>ENJOY INFINITY</h1>
+ <p class="director">DIRECTOR: KALAVENA ABHILASH</p>
+ <p>10 CLASS • PHYSICAL SCIENCE</p>
+ <p class="pill">LEARN • EXPLORE • PRACTICE • ACHIEVE</p>
+ <div style="margin-top:15px">
+  <button class="btn" onclick="go('academy')">Enter Academy 🚀</button>
+  <button class="btn alt" onclick="toggleTheme()">🌗 Theme</button>
+ </div>
 </header>
 
+<nav>
+ <a href="#dashboard">Dashboard</a>
+ <a href="#academy">Lessons</a>
+ <a href="#lab">Quantum Lab</a>
+ <a href="#exam">Exam Arena</a>
+ <a href="#cards">Flashcards</a>
+ <a href="#studio">Director Studio</a>
+</nav>
+
 <main>
+<section id="dashboard">
+ <h2>🚀 Student Command Center</h2>
+ <p class="muted">Your personal science learning dashboard.</p>
+ <div class="grid">
+  <div class="card"><div class="icon">⭐</div><h3>Total XP</h3>
+   <div class="big" id="xp">0</div><span class="muted">Learning points</span></div>
+  <div class="card"><div class="icon">📚</div><h3>Completed lessons</h3>
+   <div class="big" id="completedCount">0</div><span class="muted">Of 3 built-in lessons</span></div>
+  <div class="card"><div class="icon">🏆</div><h3>Best exam score</h3>
+   <div class="big" id="best">0%</div><span class="muted">Personal best</span></div>
+  <div class="card"><div class="icon">🔖</div><h3>Saved lessons</h3>
+   <div class="big" id="savedCount">0</div><button class="btn alt" onclick="showSaved()">View bookmarks</button></div>
+ </div>
+ <div class="card" style="margin-top:14px">
+  <h3>🎯 Study goal</h3>
+  <p id="goalText">Complete one lesson today.</p>
+  <div class="bar"><div id="goalBar"></div></div>
+  <button class="btn" onclick="go('academy')">Continue learning</button>
+ </div>
+ <div class="card" id="savedPanel" style="margin-top:14px" hidden>
+  <h3>🔖 Your bookmarks</h3><div id="savedList"></div>
+ </div>
+</section>
 
-  <section class="card">
-    <h2>📘 Welcome to Physical Science</h2>
-    <p>
-      Learn science concepts with simple explanations,
-      electron diagrams and easy examples.
-    </p>
-    <p><strong>Topic:</strong> Electronic Configuration and Orbitals</p>
-  </section>
+<section id="academy">
+ <h2>📘 Science Academy</h2>
+ <p class="muted">Starter lessons based on your orbital questions. Add textbook-verified chapters as you study.</p>
+ <input id="search" placeholder="Search lessons..." oninput="filterLessons()">
+ <div id="lessons" class="grid" style="margin-top:13px">
+  <article class="card lesson" data-key="hund hunds rule orbital electron">
+   <span class="badge">LESSON 01</span><h3>Hund's Rule</h3>
+   <p>Equal-energy orbitals fill singly before electrons pair. Unpaired electrons occupy separate orbitals with parallel spins in the ground state.</p>
+   <div class="diagram"><b>2p³</b><div class="orbit">
+    <div class="orb">↑</div><div class="orb">↑</div><div class="orb">↑</div>
+   </div>Three electrons, three separate p orbitals.</div>
+   <button class="btn" onclick="finish('hund')">Complete ✓</button>
+   <button class="btn alt" onclick="bookmark('hund','Hund’s Rule')">🔖 Save</button>
+  </article>
+  <article class="card lesson" data-key="carbon electron configuration 1s 2s 2p">
+   <span class="badge">LESSON 02</span><h3>Carbon Configuration</h3>
+   <p>Neutral carbon has six electrons. Its ground-state configuration is 1s² 2s² 2p².</p>
+   <div class="diagram">1s: [↑↓] &nbsp; 2s: [↑↓]
+    <p>2p:</p><div class="orbit"><div class="orb">↑</div>
+    <div class="orb">↑</div><div class="orb"></div></div>
+   </div>
+   <button class="btn" onclick="finish('carbon')">Complete ✓</button>
+   <button class="btn alt" onclick="bookmark('carbon','Carbon Configuration')">🔖 Save</button>
+  </article>
+  <article class="card lesson" data-key="s orbital 1s spherical shape">
+   <span class="badge">LESSON 03</span><h3>Shape of a 1s Orbital</h3>
+   <div class="sphere" role="img" aria-label="Illustration of a spherical orbital"></div>
+   <p>An s orbital has a spherical shape. The illustration does not show a hard physical boundary.</p>
+   <button class="btn" onclick="finish('sorbital')">Complete ✓</button>
+   <button class="btn alt" onclick="bookmark('sorbital','Shape of 1s Orbital')">🔖 Save</button>
+  </article>
+ </div>
+ <p id="noResults" class="muted hidden">No matching lessons.</p>
+</section>
 
-  <section class="card">
-    <h2>Q4. Hund's Rule</h2>
+<section id="lab">
+ <h2>⚛️ Quantum Lab</h2>
+ <div class="grid">
+  <div class="card">
+   <h3>Electron Configuration Explorer</h3>
+   <label for="element">Select an element</label>
+   <select id="element" onchange="drawAtom()">
+    <option value="1">Hydrogen — H</option>
+    <option value="2">Helium — He</option>
+    <option value="3">Lithium — Li</option>
+    <option value="4">Beryllium — Be</option>
+    <option value="5">Boron — B</option>
+    <option value="6" selected>Carbon — C</option>
+    <option value="7">Nitrogen — N</option>
+    <option value="8">Oxygen — O</option>
+    <option value="9">Fluorine — F</option>
+    <option value="10">Neon — Ne</option>
+    <option value="11">Sodium — Na</option>
+    <option value="12">Magnesium — Mg</option>
+    <option value="13">Aluminium — Al</option>
+    <option value="14">Silicon — Si</option>
+    <option value="15">Phosphorus — P</option>
+    <option value="16">Sulfur — S</option>
+    <option value="17">Chlorine — Cl</option>
+    <option value="18">Argon — Ar</option>
+    <option value="19">Potassium — K</option>
+    <option value="20">Calcium — Ca</option>
+   </select>
+   <div class="diagram" id="atomOutput" style="margin-top:14px"></div>
+  </div>
+  <div class="card">
+   <h3>🔬 Orbital Shape</h3>
+   <div class="diagram"><div class="sphere"></div>
+    <b>S orbital — spherical</b></div>
+   <p class="muted">A p orbital generally has two lobes. These shapes represent probability distributions, not planetary paths.</p>
+   <button class="btn alt" onclick="alert('s orbitals are spherical. p orbitals have two main lobes.')">Quick fact</button>
+  </div>
+ </div>
+</section>
 
-    <p>
-      <strong>Hund's rule:</strong> Electrons occupy orbitals
-      of equal energy one at a time before pairing.
-      The unpaired electrons have parallel spins in the
-      ground-state arrangement.
-    </p>
+<section id="exam">
+ <h2>🏆 Exam Arena</h2>
+ <div class="card">
+  <p>Answer five questions. Start the timer and submit before time runs out.</p>
+  <div class="grid">
+   <div><span class="muted">Time remaining</span><div class="big" id="timer">02:00</div></div>
+   <div><span class="muted">Questions</span><div class="big">05</div></div>
+  </div>
+  <button class="btn" id="startBtn" onclick="startExam()">Start Exam</button>
+  <form id="examForm" class="hidden">
+   <div id="questions"></div>
+   <button class="btn" type="submit">Submit Exam</button>
+  </form>
+  <div id="result" class="feedback" aria-live="polite"></div>
+  <button class="btn alt" onclick="resetExam()">Try Again</button>
+ </div>
+</section>
 
-    <h3>Example: Three electrons in 2p</h3>
-    <div class="diagram">
-      <p>2p orbitals</p>
-      <div class="orbitals">
-        <div class="orbital">↑</div>
-        <div class="orbital">↑</div>
-        <div class="orbital">↑</div>
-      </div>
-      <p class="correct">Correct arrangement: 2p³</p>
-    </div>
+<section id="cards">
+ <h2>🧠 Flashcard Arena</h2>
+ <div class="card">
+  <span class="badge" id="cardNumber">Card 1 of 5</span>
+  <h3 id="flashQuestion">What is Hund's rule?</h3>
+  <p id="flashAnswer" class="hidden"></p>
+  <button class="btn" id="flipBtn" onclick="flipCard()">Reveal Answer</button>
+  <button class="btn alt" onclick="nextCard()">Next Card →</button>
+ </div>
+</section>
 
-    <h3>Carbon: 2p²</h3>
-    <p>
-      Carbon has 6 electrons. Its electron configuration is
-      <strong>1s² 2s² 2p²</strong>.
-    </p>
-
-    <div class="diagram">
-      <p>2p orbitals</p>
-      <div class="orbitals">
-        <div class="orbital">↑</div>
-        <div class="orbital">↑</div>
-        <div class="orbital"></div>
-      </div>
-      <p class="correct">Correct: one electron in each of two orbitals</p>
-    </div>
-
-    <div class="diagram">
-      <p>Incorrect arrangement</p>
-      <div class="orbitals">
-        <div class="orbital">↑↓</div>
-        <div class="orbital"></div>
-        <div class="orbital"></div>
-      </div>
-      <p class="wrong">Incorrect for ground-state carbon</p>
-    </div>
-
-    <div class="note">
-      <strong>Remember:</strong> Fill each equal-energy p orbital
-      singly before pairing electrons.
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>Q5. Draw the shape of a 1s orbital</h2>
-
-    <p>
-      The letter <strong>s</strong> represents an s orbital.
-      The number <strong>1</strong> indicates the first
-      principal energy level.
-    </p>
-
-    <div class="diagram">
-      <div class="sphere"></div>
-      <p class="correct">1s orbital — spherical shape</p>
-    </div>
-
-    <p>
-      An s orbital has a spherical shape around the nucleus.
-      The blue sphere above is a simple illustration, not
-      a boundary of the actual orbital.
-    </p>
-  </section>
-
-  <section class="card">
-    <h2>📝 Quick Revision</h2>
-    <p><strong>1.</strong> What is Hund's rule?</p>
-    <p><strong>Answer:</strong> Equal-energy orbitals fill singly before pairing.</p>
-
-    <p><strong>2.</strong> What is carbon's electron configuration?</p>
-    <p><strong>Answer:</strong> 1s² 2s² 2p².</p>
-
-    <p><strong>3.</strong> What is the shape of an s orbital?</p>
-    <p><strong>Answer:</strong> Spherical.</p>
-
-    <button onclick="window.print()">Print / Save as PDF</button>
-  </section>
-
+<section id="studio">
+ <h2>🛠️ Director Studio</h2>
+ <div class="card">
+  <p>Write your own notes or add a revision topic. Custom notes are saved in this browser.</p>
+  <label for="noteTitle">Note title</label>
+  <input id="noteTitle" maxlength="100" placeholder="Example: Chemical reactions">
+  <label for="noteBody">Study notes</label>
+  <textarea id="noteBody" maxlength="10000" placeholder="Write your own notes here..."></textarea>
+  <button class="btn" onclick="addNote()">Save Note</button>
+  <h3 style="margin-top:20px">Your custom notes</h3>
+  <div id="customNotes"></div>
+  <p class="muted">This is a local notes manager, not a secure online admin account. Notes are not shared with other visitors.</p>
+  <button class="btn alt" onclick="exportData()">Export My Data</button>
+ </div>
+</section>
 </main>
 
 <footer>
-  <p>ENJOY • 10th Class Physical Science</p>
-  <p>Directed by KALAVENA ABHILASH</p>
-  <p>Learn Today • Succeed Tomorrow 🚀</p>
+ <b>ENJOY SCIENCE INFINITY</b>
+ <p>DIRECTOR: KALAVENA ABHILASH</p>
+ <p>10 CLASS • PHYSICAL SCIENCE</p>
+ <p>Learn Today • Succeed Tomorrow 🚀</p>
 </footer>
 
+<script>
+const $ = id => document.getElementById(id);
+const store = {
+ get(k,fallback) {
+  try {
+   const v=localStorage.getItem('enjoyInfinity_'+k);
+   return v===null?fallback:JSON.parse(v);
+  } catch(e) { return fallback; }
+ },
+ set(k,v) {
+  try { localStorage.setItem('enjoyInfinity_'+k,JSON.stringify(v)); }
+  catch(e) {}
+ }
+};
+let state={
+ xp:store.get('xp',0),
+ completed:store.get('completed',[]),
+ bookmarks:store.get('bookmarks',[]),
+ best:store.get('best',0),
+ notes:store.get('notes',[])
+};
+function go(id){$(id).scrollIntoView({behavior:'smooth'});}
+function toggleTheme(){
+ document.body.classList.toggle('light');
+ store.set('light',document.body.classList.contains('light'));
+}
+if(store.get('light',false))document.body.classList.add('light');
+
+function renderDashboard(){
+ $('xp').textContent=state.xp;
+ $('completedCount').textContent=state.completed.length;
+ $('best').textContent=state.best+'%';
+ $('savedCount').textContent=state.bookmarks.length;
+ const pct=Math.min(100,state.completed.length/3*100);
+ $('goalBar').style.width=pct+'%';
+ $('goalText').textContent=state.completed.length>=3?
+ 'All built-in lessons completed! Excellent work.':
+ 'Complete '+(3-state.completed.length)+' more lesson(s) to finish your starter goal.';
+ $('savedList').replaceChildren();
+ if(!state.bookmarks.length){
+  $('savedList').textContent='No saved lessons yet.';
+ }else{
+  state.bookmarks.forEach(b=>{
+   const p=document.createElement('p');
+   p.textContent='🔖 '+b.title;
+   $('savedList').appendChild(p);
+  });
+ }
+ renderNotes();
+}
+function finish(id){
+ if(!state.completed.includes(id)){
+  state.completed.push(id);state.xp+=20;
+  store.set('completed',state.completed);store.set('xp',state.xp);
+ }
+ renderDashboard();
+ alert('Lesson completed! +20 XP when first completed.');
+}
+function bookmark(id,title){
+ const index=state.bookmarks.findIndex(b=>b.id===id);
+ if(index>=0)state.bookmarks.splice(index,1);
+ else state.bookmarks.push({id,title});
+ store.set('bookmarks',state.bookmarks);renderDashboard();
+}
+function showSaved(){
+ $('savedPanel').hidden=false;
+ go('savedPanel');
+}
+function filterLessons(){
+ const q=$('search').value.toLowerCase();
+ let n=0;
+ document.querySelectorAll('.lesson').forEach(el=>{
+  const match=(el.innerText+' '+el.dataset.key).toLowerCase().includes(q);
+  el.classList.toggle('hidden',!match);if(match)n++;
+ });
+ $('noResults').classList.toggle('hidden',n!==0);
+}
+
+const symbols=[
+'H','He','Li','Be','B','C','N','O','F','Ne',
+'Na','Mg','Al','Si','P','S','Cl','Ar','K','Ca'
+];
+const names=[
+'Hydrogen','Helium','Lithium','Beryllium','Boron','Carbon',
+'Nitrogen','Oxygen','Fluorine','Neon','Sodium','Magnesium',
+'Aluminium','Silicon','Phosphorus','Sulfur','Chlorine',
+'Argon','Potassium','Calcium'
+];
+function drawAtom(){
+ const z=Number($('element').value);
+ let rem=z, config=[], orbitals=[];
+ const order=[['1s',2],['2s',2],['2p',6],['3s',2],['3p',6],['4s',2]];
+ order.forEach(([name,cap])=>{
+  const count=Math.min(rem,cap);rem-=count;
+  if(count>0){
+   config.push(name+sup(count));
+   if(name.endsWith('p')){
+    const boxes=[0,0,0];
+    for(let i=0;i<count;i++)boxes[i%3]++;
+    orbitals.push({name,boxes});
+   }else{
+    orbitals.push({name,boxes:[count]});
+   }
+  }
+ });
+ let html='<h3>'+names[z-1]+' ('+symbols[z-1]+')</h3>';
+ html+='<p>Atomic number: '+z+'</p>';
+ html+='<p><b>Configuration:</b> '+config.join(' ')+'</p>';
+ orbitals.forEach(group=>{
+  html+='<p>'+group.name+' subshell</p><div class="orbit">';
+  group.boxes.forEach(n=>{
+   html+='<div class="orb">'+(n>0?'↑':'')+(n>1?'↓':'')+'</div>';
+  });
+  html+='</div>';
+ });
+ html+='<p>Ground-state filling order shown for the first 20 elements.</p>';
+ $('atomOutput').innerHTML=html;
+}
+function sup(n){return ['','¹','²','³','⁴','⁵','⁶'][n]||String(n);}
+drawAtom();
+
+const questions=[
+ {q:"What is Hund's rule?",o:[
+  'Pair every electron immediately',
+  'Fill equal-energy orbitals singly before pairing',
+  'Electrons have no spin'],a:1,
+  why:'Hund’s rule favours singly occupied equal-energy orbitals before pairing.'},
+ {q:'How many electrons are in a neutral carbon atom?',o:['4','6','8'],a:1,
+  why:'Carbon has atomic number 6, so a neutral atom has six electrons.'},
+ {q:'What is carbon’s ground-state configuration?',o:[
+  '1s² 2s² 2p²','1s² 2s² 2p⁴','1s² 2p⁴'],a:0,
+  why:'The six electrons fill 1s, then 2s, then 2p.'},
+ {q:'What is the general shape of an s orbital?',o:[
+  'Dumbbell','Spherical','Flat square'],a:1,
+  why:'An s orbital has spherical symmetry.'},
+ {q:'How many orbitals are in a p subshell?',o:['1','3','5'],a:1,
+  why:'A p subshell has three orbitals, often labelled px, py and pz.'}
+];
+let timerId=null,remaining=120,started=false,finished=false;
+function buildQuestions(){
+ $('questions').replaceChildren();
+ questions.forEach((item,i)=>{
+  const wrap=document.createElement('div');wrap.className='item';
+  const title=document.createElement('h3');title.textContent=(i+1)+'. '+item.q;
+  wrap.appendChild(title);
+  item.o.forEach((opt,j)=>{
+   const label=document.createElement('label');label.className='option';
+   const input=document.createElement('input');
+   input.type='radio';input.name='q'+i;input.value=j;input.required=true;
+   label.appendChild(input);label.appendChild(document.createTextNode(' '+opt));
+   wrap.appendChild(label);
+  });
+  $('questions').appendChild(wrap);
+ });
+}
+function showTime(){
+ $('timer').textContent=String(Math.floor(remaining/60)).padStart(2,'0')+
+ ':'+String(remaining%60).padStart(2,'0');
+}
+function startExam(){
+ if(started&&!finished)return;
+ remaining=120;started=true;finished=false;
+ $('result').textContent='';
+ $('examForm').classList.remove('hidden');
+ $('startBtn').disabled=true;
+ buildQuestions();showTime();
+ clearInterval(timerId);
+ timerId=setInterval(()=>{
+  remaining--;showTime();
+  if(remaining<=0)submitExam(true);
+ },1000);
+}
+function submitExam(timeUp=false){
+ if(!started||finished)return;
+ if(!timeUp&&!$('examForm').reportValidity())return;
+ finished=true;clearInterval(timerId);
+ let score=0;
+ questions.forEach((q,i)=>{
+  const selected=document.querySelector('input[name="q'+i+'"]:checked');
+  if(selected&&Number(selected.value)===q.a)score++;
+ });
+ const pct=Math.round(score/questions.length*100);
+ if(pct>state.best){state.best=pct;store.set('best',pct);}
+ state.xp+=score*10;store.set('xp',state.xp);
+ $('result').textContent=(timeUp?'Time is up! ':'')+
+ 'Score: '+score+'/'+questions.length+' ('+pct+'%).';
+ const review=document.createElement('div');
+ review.className='card';review.style.marginTop='12px';
+ const heading=document.createElement('h3');heading.textContent='Answer review';
+ review.appendChild(heading);
+ questions.forEach((q,i)=>{
+  const p=document.createElement('p');
+  p.textContent=(i+1)+'. '+q.o[q.a]+'. '+q.why;
+  review.appendChild(p);
+ });
+ $('result').appendChild(review);
+ $('startBtn').disabled=false;
+ renderDashboard();
+}
+function resetExam(){
+ clearInterval(timerId);timerId=null;
+ started=false;finished=false;remaining=120;showTime();
+ $('examForm').reset();$('examForm').classList.add('hidden');
+ $('result').replaceChildren();$('startBtn').disabled=false;
+}
+$('examForm').addEventListener('submit',e=>{
+ e.preventDefault();submitExam(false);
+});
+buildQuestions();showTime();
+
+const flashcards=[
+ ["What is Hund's rule?","Equal-energy orbitals fill singly before pairing."],
+ ["How many electrons does carbon have?","Six electrons in a neutral carbon atom."],
+ ["What is carbon's configuration?","1s² 2s² 2p²."],
+ ["What shape is an s orbital?","Spherical."],
+ ["How many orbitals are in a p subshell?","Three orbitals."]
+];
+let flashIndex=0,flipped=false;
+function renderFlash(){
+ $('cardNumber').textContent='Card '+(flashIndex+1)+' of '+flashcards.length;
+ $('flashQuestion').textContent=flashcards[flashIndex][0];
+ $('flashAnswer').textContent=flashcards[flashIndex][1];
+ $('flashAnswer').classList.toggle('hidden',!flipped);
+ $('flipBtn').textContent=flipped?'Hide Answer':'Reveal Answer';
+}
+function flipCard(){flipped=!flipped;renderFlash();}
+function nextCard(){flashIndex=(flashIndex+1)%flashcards.length;flipped=false;renderFlash();}
+renderFlash();
+
+function addNote(){
+ const title=$('noteTitle').value.trim();
+ const body=$('noteBody').value.trim();
+ if(!title||!body){alert('Enter both a title and study notes.');return;}
+ state.notes.push({title,body,id:Date.now()});
+ store.set('notes',state.notes);
+ $('noteTitle').value='';$('noteBody').value='';
+ renderNotes();
+}
+function renderNotes(){
+ $('customNotes').replaceChildren();
+ if(!state.notes.length){
+  $('customNotes').textContent='No custom notes saved yet.';return;
+ }
+ state.notes.forEach(note=>{
+  const article=document.createElement('article');article.className='item';
+  const title=document.createElement('h3');title.textContent=note.title;
+  const body=document.createElement('p');body.textContent=note.body;
+  const del=document.createElement('button');del.className='btn alt';
+  del.textContent='Delete note';
+  del.onclick=()=>{
+   state.notes=state.notes.filter(n=>n.id!==note.id);
+   store.set('notes',state.notes);renderNotes();
+  };
+  article.append(title,body,del);$('customNotes').appendChild(article);
+ });
+}
+function exportData(){
+ const data={completed:state.completed,xp:state.xp,best:state.best,
+ bookmarks:state.bookmarks,notes:state.notes};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');a.href=url;a.download='enjoy-science-data.json';
+ a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+renderDashboard();
+</script>
 </body>
 </html>
