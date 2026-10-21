@@ -1,36 +1,239 @@
-btn.className = "option";
-    btn.textContent = String.fromCharCode(65 + i) + ". " + answer;
-    btn.onclick = () => answerQuestion(i);
-    area.appendChild(btn);
-  });
-  document.getElementById("quizScore").textContent = "Current score: " + score;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GameZone Battle Island</title>
+<style>
+body {
+  margin: 0;
+  background: #080d18;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
-function answerQuestion(choice) {
-  if (locked) return;
-  locked = true;
-  const item = questions[qIndex];
-  if (choice === item.correct) {
-    score++;
-    document.getElementById("feedback").textContent = "✅ Correct! " + item.why;
-  } else {
-    document.getElementById("feedback").textContent =
-      "❌ The answer is " + item.a[item.correct] + ". " + item.why;
-  }
-  document.getElementById("quizScore").textContent =
-    "Current score: " + score + " / " + questions.length;
-  document.getElementById("nextBtn").disabled = false;
+header {
+  padding: 24px 10px;
+  background: #101b2b;
+  border-bottom: 2px solid #00eaff;
 }
-function nextQuestion() {
-  if (!locked) return;
-  if (qIndex < questions.length - 1) {
-    qIndex++;
-    loadQuestion();
-  } else {
-    best = Math.max(best, score);
-    save("pythonpathBest", best);
-    updateProgress();
-    document.getElementById("quizNumber").textContent = "Quiz complete!";
-    document.getElementById("quizQuestion").textContent =
-      "You scored " + score + " out of " + questions.length + ".";
-    document.getElementById("quizOptions").innerHTML = "";
-    document.getElementById("feedback").textContent =
+h1 { color: #ffd447; }
+button, select {
+  padding: 12px;
+  margin: 6px;
+  border: 1px solid #00eaff;
+  border-radius: 8px;
+  background: #10283d;
+  color: white;
+}
+.panel {
+  margin: 15px auto;
+  padding: 18px;
+  max-width: 750px;
+  background: #101b2b;
+  border: 1px solid #24617c;
+  border-radius: 12px;
+}
+.map {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 12px;
+  background:
+    radial-gradient(ellipse at 30% 30%, #7bba67 0 15%, transparent 16%),
+    radial-gradient(ellipse at 65% 60%, #609c59 0 22%, transparent 23%),
+    linear-gradient(135deg, #126080, #1b795f, #126080);
+}
+.zone {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 140px;
+  height: 140px;
+  transform: translate(-50%,-50%);
+  border: 3px solid #35e7ff;
+  border-radius: 50%;
+  background: #35e7ff18;
+}
+#feed { color: #35e7ff; }
+</style>
+</head>
+<body>
+<header>
+  <h1>GAMEZONE: BATTLE ISLAND</h1>
+  <p>DROP • LOOT • SURVIVE</p>
+</header>
+
+<div class="panel">
+  <h2>Choose Game Mode</h2>
+  <button onclick="mode='Solo';players=120;update()">
+    Solo
+  </button>
+  <button onclick="mode='Duo';players=60;update()">
+    Duo
+  </button>
+  <button onclick="mode='Squad';players=30;update()">
+    Squad
+  </button>
+  <p id="mode">Mode: Solo</p>
+  <button onclick="start()">START MATCH</button>
+  <p id="status">Ready to deploy</p>
+</div>
+
+<div class="panel">
+  <h2>Battle Map</h2>
+  <div class="map" onclick="pin(event)">
+    <div class="zone"></div>
+    <span id="marker"
+      style="position:absolute;left:50%;top:50%;font-size:25px">
+      📍
+    </span>
+  </div>
+  <p>Tap the map to mark a landing point.</p>
+  <p>Players remaining: <b id="players">120</b></p>
+  <p>Safe zone: <b id="safe">100%</b></p>
+</div>
+
+<div class="panel">
+  <h2>Weapon Loadout</h2>
+  <select id="weapon">
+    <option>M416 - Assault Rifle</option>
+    <option>AKM - Assault Rifle</option>
+    <option>UMP45 - SMG</option>
+    <option>M249 - Machine Gun</option>
+    <option>AWM - Sniper Rifle</option>
+    <option>SKS - DMR</option>
+    <option>Pistol</option>
+    <option>Shotgun</option>
+    <option>Pan - Melee</option>
+    <option>Frag Grenade</option>
+    <option>Smoke Grenade</option>
+    <option>Crossbow</option>
+  </select>
+  <p id="equipped">Choose your weapon.</p>
+  <button onclick="equip()">EQUIP</button>
+  <button onclick="fire()">FIRE</button>
+  <button onclick="reload()">RELOAD</button>
+  <p id="ammo">Ammo: 30 / 120</p>
+</div>
+
+<div class="panel">
+  <h2>Vehicles</h2>
+  <button onclick="vehicle('Jeep')">🚙 Jeep</button>
+  <button onclick="vehicle('Helicopter')">🚁 Helicopter</button>
+  <button onclick="vehicle('Boat')">🚤 Boat</button>
+  <button onclick="vehicle('On foot')">🏃 On foot</button>
+  <p id="vehicle">Transport: On foot</p>
+</div>
+
+<div class="panel">
+  <h2>Custom Settings</h2>
+  <p>Graphics</p>
+  <select id="graphics">
+    <option>Low</option><option selected>High</option>
+    <option>Ultra</option>
+  </select>
+  <p>Touch sensitivity</p>
+  <input id="sensitivity" type="range" min="10" max="100" value="60">
+  <p><label><input id="auto" type="checkbox" checked> Auto-pickup</label></p>
+  <p><label><input id="doors" type="checkbox" checked> Auto-open doors</label></p>
+  <p><label><input id="sound" type="checkbox" checked> Sound effects</label></p>
+  <button onclick="saveSettings()">SAVE SETTINGS</button>
+  <p id="settings"></p>
+</div>
+
+<div class="panel">
+  <h2>Squad Controls</h2>
+  <button onclick="action('Move')">MOVE</button>
+  <button onclick="action('Cover')">TAKE COVER</button>
+  <button onclick="action('Medkit')">MEDKIT</button>
+  <button onclick="action('Team pin shared')">SHARE PIN</button>
+  <button onclick="action('Voice chat demo enabled')">VOICE CHAT</button>
+  <p id="feed">Welcome to Battle Island!</p>
+</div>
+
+<script>
+let mode = "Solo";
+let players = 120;
+let safe = 100;
+let ammo = 30;
+let reserve = 120;
+let live = false;
+let equipped = "M416";
+
+function update() {
+  document.getElementById("mode").textContent =
+    "Mode: " + mode;
+  document.getElementById("players").textContent = players;
+}
+
+function log(message) {
+  document.getElementById("feed").textContent = message;
+}
+
+function start() {
+  live = true;
+  safe = 100;
+  document.getElementById("status").textContent =
+    "Match started — simulated gameplay";
+  log(mode + " match started!");
+  update();
+}
+
+function pin(event) {
+  let rect = event.currentTarget.getBoundingClientRect();
+  let marker = document.getElementById("marker");
+  marker.style.left =
+    ((event.clientX - rect.left) / rect.width * 100) + "%";
+  marker.style.top =
+    ((event.clientY - rect.top) / rect.height * 100) + "%";
+  log("Landing point marked!");
+}
+
+function equip() {
+  equipped = document.getElementById("weapon").value;
+  document.getElementById("equipped").textContent =
+    "Equipped: " + equipped;
+  log("Weapon selected: " + equipped);
+}
+
+function fire() {
+  if (!live) return log("Start a match first.");
+  if (ammo <= 0) return log("Reload your weapon.");
+  ammo--;
+  players = Math.max(1, players - 1);
+  safe = Math.max(10, safe - 2);
+  document.getElementById("players").textContent = players;
+  document.getElementById("safe").textContent = safe + "%";
+  document.getElementById("ammo").textContent =
+    "Ammo: " + ammo + " / " + reserve;
+  log("Simulated shot fired. Players remaining: " + players);
+}
+
+function reload() {
+  let amount = Math.min(30 - ammo, reserve);
+  ammo += amount;
+  reserve -= amount;
+  document.getElementById("ammo").textContent =
+    "Ammo: " + ammo + " / " + reserve;
+  log("Reload completed.");
+}
+
+function vehicle(name) {
+  document.getElementById("vehicle").textContent =
+    "Transport: " + name;
+  log("Selected transport: " + name);
+}
+
+function saveSettings() {
+  document.getElementById("settings").textContent =
+    "Settings applied for this session!";
+}
+
+function action(name) {
+  log(name + " — demo control");
+}
+</script>
+</body>
+</html>
